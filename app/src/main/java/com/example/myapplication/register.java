@@ -22,93 +22,51 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 
-public class register extends AppCompatActivity implements View.OnClickListener {
+import java.util.List;
 
-    public TextView banner, registerUser;
-    public EditText editTextFullName, editTextEmail, editTextPassword;
-    public FirebaseAuth mAuth;
+public class register extends AppCompatActivity  {
+
+    public static List<User> data;
+    DatabaseHelper db;
+    private EditText fullName, email, password;
+    public Button button;
+    Button addUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase.getInstance().getReference("Buildings").child("BuildingName").
-                setValue("THH");
+        // Setting up the database
+        fullName = findViewById(R.id.fullName);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        addUser = findViewById(R.id.registerUser);
 
-        banner = (TextView) findViewById(R.id.banner);
-        banner.setOnClickListener(this);
+        // creating an object of databaseHelper
+        db = new DatabaseHelper(register.this);
 
-        registerUser = (Button) findViewById(R.id.registerUser);
-        registerUser.setOnClickListener(this);
-
-        editTextFullName = (EditText) findViewById(R.id.fullName);
-        editTextEmail = (EditText) findViewById(R.id.email);
-        editTextPassword = (EditText) findViewById(R.id.password);
-
-    }
-
-    @Override
-    public void onClick(View v){
-        switch (v.getId()){
-            case R.id.banner:
-                startActivity(new Intent(this,login.class));
-                break;
-            case R.id.registerUser:
-                registerUser();
-                break;
-        }
-    }
-
-    private void registerUser(){
-        String email = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
-        String fullName = editTextFullName.getText().toString();
-
-        if(fullName.isEmpty()){
-            editTextFullName.setError("Need full name");
-            editTextFullName.requestFocus();
-            return;
-        }
-        if(email.isEmpty()){
-            editTextEmail.setError("Need full name");
-            editTextEmail.requestFocus();
-            return;
-        }
-//        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//            editTextEmail.setError("Please give valid email");
-//            editTextEmail.requestFocus();
-//            return;
-//        }
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        // on click listener for add user
+        addUser.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    User newUser = new User(fullName,password, email );
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
-                            setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(register.this, "Successful register", Toast.LENGTH_LONG).show();
-
-                            }
-                            else{
-                                Toast.makeText(register.this, "Failed register", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }); ///child(FirebaseAuth.getInstance().getCurrentUser().getUid()). we could add an oncompletelistener here from 19;30
-                }else{
-                    Toast.makeText(register.this, "Failed to register", Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                String name = fullName.getText().toString();
+                String emailString = email.getText().toString();
+                String passwordString = password.getText().toString();
+                // checking if all the fields have been filled
+                if (name.isEmpty() || emailString.isEmpty() || passwordString.isEmpty()) {
+                    Toast.makeText(register.this, "Please fill all the data", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                User user = new User(name, passwordString, emailString);
+                db.addUser(user);
+                Toast.makeText(register.this, "User Added", Toast.LENGTH_SHORT).show();
+                fullName.setText("");
+                email.setText("");
+                password.setText("");
             }
         });
     }
-
-
-
-
-
-
 }
+
+        //  database ends

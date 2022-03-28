@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,21 +17,45 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static List<User> data;
     DatabaseHelper db;
+    private EditText fullName, email, password;
     public Button button;
+    Button addUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        View normalC = this.findViewById(R.id.C);
-//        //normalC.setEnabled(true);
-//        final MediaPlayer mpC = MediaPlayer.create(this, R.raw.normalc);
-//        normalC.setOnClickListener(new OnClickListener(){
+//        // Setting up the database
+//        fullName = findViewById(R.id.fullName);
+//        email = findViewById(R.id.email);
+//        password = findViewById(R.id.password);
+//        addUser =  findViewById(R.id.registerUser);
 //
-//            public void onClick(View v) {
-//                mpC.start();
+//        // creating an object of databaseHelper
+//        db = new DatabaseHelper(MainActivity.this);
+//
+//        // on click listener for add user
+//        addUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String name = fullName.getText().toString();
+//                String emailString = email.getText().toString();
+//                String passwordString = password.getText().toString();
+//                // checking if all the fields have been filled
+//                if(name.isEmpty() || emailString.isEmpty() || passwordString.isEmpty()){
+//                    Toast.makeText(MainActivity.this, "Please fill all the data", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                User user = new User(name, passwordString, emailString);
+//                db.addUser(user);
+//                Toast.makeText(MainActivity.this, "User Added", Toast.LENGTH_SHORT).show();
+//                fullName.setText("");
+//                email.setText("");
+//                password.setText("");
 //            }
 //        });
+//        //  database ends
+
         setTitle("Covider");
         button = (Button) findViewById(R.id.map);
         button.setOnClickListener(new View.OnClickListener(){
@@ -65,14 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,faculty.class);
                 startActivity(intent);
             }
+
+
         });
-
-        db = new DatabaseHelper(this);
-        data = new ArrayList<>();
-        User user = new User("test", "test", "test");
-//        db.addUser(user);
-//        data = db.getAllUser();
-//        System.out.println(data);
-
     }
 }
