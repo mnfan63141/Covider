@@ -14,16 +14,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "UserManager.db";
+    private static final String DATABASE_NAME = "UserManager6.db";
 
     // User table name
     private static final String TABLE_USER = "Users";
+    // Building table name
+    private static final String TABLE_BUILDING = "Buildings";
 
     // User Table Columns names
     private static final String COLUMN_USER_NAME = "user_name";
     private static final String COLUMN_USER_EMAIL = "user_email";
     private static final String COLUMN_USER_PASSWORD = "user_password";
-    private static final String COLUMN_USER_ID = "id";
+
+    //Building table columns
+    private static final String COLUMN_BUILDING_NAME = "building_name";
+    private static final String COLUMN_BUILDING_RISKLEVEL = "risk_level";
+
+
 
 
 
@@ -37,11 +44,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // create table sql query
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
-//                + COLUMN_USER_ID + "INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + COLUMN_USER_NAME + " TEXT PRIMARY KEY ,"
                 + COLUMN_USER_EMAIL + " TEXT,"
                 + COLUMN_USER_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
+
+
+        // create the buildings table
+        String CREATE_BUILDING_TABLE = "CREATE TABLE " + TABLE_BUILDING + "("
+                + COLUMN_BUILDING_NAME + " TEXT PRIMARY KEY ,"
+                + COLUMN_BUILDING_RISKLEVEL + " INTEGER "
+                + ")";
+        db.execSQL(CREATE_BUILDING_TABLE);
+        // adding buildings and risk levels
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BUILDING_NAME, "Campus Center");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Taper Hall");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "3");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Salvatori");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "2");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Fertitta");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Engemann");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "4");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Kaufman");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "3");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Kaprielian");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "2");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Leventhal");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "5");
+        db.insert(TABLE_BUILDING, null, values);
+
+        values.put(COLUMN_BUILDING_NAME, "Annenberg");
+        values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+        db.insert(TABLE_BUILDING, null, values);
     }
 
     @Override
