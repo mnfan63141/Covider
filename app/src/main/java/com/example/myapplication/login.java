@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.database.Cursor;
@@ -22,6 +23,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivityLoginBinding;
 
+import java.util.List;
+
 public class login extends AppCompatActivity implements View.OnClickListener{
     EditText email, password;
     Button enter;
@@ -35,7 +38,7 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         enter = findViewById(R.id.signIn);
-        db = new DatabaseHelper(this);
+        db = new DatabaseHelper(login.this);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
