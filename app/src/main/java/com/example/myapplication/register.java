@@ -64,6 +64,7 @@ public class register extends AppCompatActivity  {
                 fullName.setText("");
                 email.setText("");
                 password.setText("");
+                startActivity(new Intent(register.this, login.class));
             }
         });
     }

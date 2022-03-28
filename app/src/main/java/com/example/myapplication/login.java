@@ -62,7 +62,8 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                         }
                         if(success){
                             Toast.makeText(login.this,  "Login Successful", Toast.LENGTH_SHORT).show();
-                            //startActivity(new Intent(login.this, MainActivity.class));
+                            Intent myIntent = new Intent(login.this, MainActivity.class);
+                             startActivity(myIntent);
                         }
                         else {
                             Toast.makeText(login.this,  "Incorrect login credentials, Try again!", Toast.LENGTH_LONG).show();

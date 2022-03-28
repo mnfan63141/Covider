@@ -25,37 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        // Setting up the database
-//        fullName = findViewById(R.id.fullName);
-//        email = findViewById(R.id.email);
-//        password = findViewById(R.id.password);
-//        addUser =  findViewById(R.id.registerUser);
-//
-//        // creating an object of databaseHelper
-//        db = new DatabaseHelper(MainActivity.this);
-//
-//        // on click listener for add user
-//        addUser.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String name = fullName.getText().toString();
-//                String emailString = email.getText().toString();
-//                String passwordString = password.getText().toString();
-//                // checking if all the fields have been filled
-//                if(name.isEmpty() || emailString.isEmpty() || passwordString.isEmpty()){
-//                    Toast.makeText(MainActivity.this, "Please fill all the data", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                User user = new User(name, passwordString, emailString);
-//                db.addUser(user);
-//                Toast.makeText(MainActivity.this, "User Added", Toast.LENGTH_SHORT).show();
-//                fullName.setText("");
-//                email.setText("");
-//                password.setText("");
-//            }
-//        });
-//        //  database ends
-
         setTitle("Covider");
         button = (Button) findViewById(R.id.map);
         button.setOnClickListener(new View.OnClickListener(){
