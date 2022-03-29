@@ -28,7 +28,7 @@ import java.util.List;
 public class login extends AppCompatActivity implements View.OnClickListener{
     EditText email, password;
     Button enter;
-    DatabaseHelper db;
+   static DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

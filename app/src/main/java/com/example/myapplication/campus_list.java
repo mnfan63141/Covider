@@ -30,7 +30,8 @@ public class campus_list extends AppCompatActivity {
 
         myIntent = new Intent(this, display_risk.class);
         list = (ListView) findViewById(R.id.campusList);
-        String[] names = {"First"};
+        String[] names = {"Campus Center", "Taper Hall", "Salvatori", "Fertitta",
+        "Engemann", "Kaufman", "Kaprielian", "Leventhal", "Annenberg"};
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         list.setAdapter(myAdapter);
         list.setOnItemClickListener(listClick);
