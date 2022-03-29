@@ -39,6 +39,7 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         enter = findViewById(R.id.signIn);
+
         db = new DatabaseHelper(login.this);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,12 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                     SQLiteDatabase database = db.getReadableDatabase();
                     String db_name = db.getDatabaseName();
                     Cursor cursor = database.rawQuery("Select * from Users", null);
-                    Cursor cursorProf = database.rawQuery("Select * from Professors", null);
+                    Cursor cursorProf = null;
+                    try {
+                        cursorProf =database.rawQuery("Select * from Professors", null);
+                    } catch (Exception e) {
+                        Log.d("Error", e.toString());
+                    }
                     boolean isProf = false;
                     if(cursorProf != null && cursorProf.getCount() > 0){
                         cursor =cursorProf;

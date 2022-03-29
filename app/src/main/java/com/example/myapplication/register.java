@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +31,7 @@ public class register extends AppCompatActivity  {
     DatabaseHelper db;
     private EditText fullName, email, password;
     public Button button;
-    Button addUser;
+    Button addUser, addFaculty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,16 @@ public class register extends AppCompatActivity  {
 
         // creating an object of databaseHelper
         db = new DatabaseHelper(register.this);
+        addFaculty = findViewById(R.id.registerFaculty);
+
+        addFaculty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // log here
+                Log.d("register", "onClick: Attempting to add new user");
+                startActivity(new Intent(register.this, registerFaculty.class));
+            }
+        });
 
         // on click listener for add user
         addUser.setOnClickListener(new View.OnClickListener() {

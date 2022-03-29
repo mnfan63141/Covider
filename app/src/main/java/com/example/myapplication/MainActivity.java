@@ -25,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        isProf = savedInstanceState.getBoolean("isProf", false);
+        try {
+            isProf = savedInstanceState.getBoolean("isProf", false);
+        } catch (Exception e) {
+            isProf = false;
+        }
         setTitle("Covider");
         button = (Button) findViewById(R.id.map);
         button.setOnClickListener(new View.OnClickListener(){
@@ -53,18 +57,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(isProf) {
-            Button facultyBtn = (Button) findViewById(R.id.faculty);
-            facultyBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        Button facultyBtn = (Button) findViewById(R.id.faculty);
+        facultyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isProf) {
                     Intent intent = new Intent(MainActivity.this, faculty.class);
 
                     startActivity(intent);
+                }else {
+                    Toast.makeText(MainActivity.this, "You are not a professor", Toast.LENGTH_SHORT).show();
                 }
+            }
 
 
-            });
-        }
+        });
     }
 }
