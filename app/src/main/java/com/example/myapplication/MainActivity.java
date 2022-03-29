@@ -21,15 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        View normalC = this.findViewById(R.id.C);
-//        //normalC.setEnabled(true);
-//        final MediaPlayer mpC = MediaPlayer.create(this, R.raw.normalc);
-//        normalC.setOnClickListener(new OnClickListener(){
-//
-//            public void onClick(View v) {
-//                mpC.start();
-//            }
-//        });
         setTitle("Covider");
         button = (Button) findViewById(R.id.map);
         button.setOnClickListener(new View.OnClickListener(){
