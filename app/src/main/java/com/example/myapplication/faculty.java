@@ -77,6 +77,8 @@ public class faculty extends AppCompatActivity {
             tableRow.addView(d1);
             tableLayout.addView(tableRow);
         }
+        // add tablelayout to activity_faculty.xml
+        this.addContentView(tableLayout, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
     }
 
 }
