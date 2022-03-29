@@ -51,6 +51,7 @@ public class faculty extends AppCompatActivity {
         c.setText("Course Risk");
         c.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
         row.addView(d);
+        tableLayout.addView(row);
 
         for(int i = 0; i < prof.getCourses().size(); i++) {
             // add row to table
@@ -74,7 +75,10 @@ public class faculty extends AppCompatActivity {
             d1.setText(prof.getCourses().get(i).calculateRisk());
             d1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
             tableRow.addView(d1);
+            tableLayout.addView(tableRow);
         }
+        // add tablelayout to activity_faculty.xml
+        this.addContentView(tableLayout, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
     }
 
 }
