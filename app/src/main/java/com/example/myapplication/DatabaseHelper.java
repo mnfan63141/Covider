@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_USER_EMAIL + " TEXT,"
                 + COLUMN_USER_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
-
+        
 
         // create the buildings table
         String CREATE_BUILDING_TABLE = "CREATE TABLE " + TABLE_BUILDING + "("
