@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static List<User> data;
     DatabaseHelper db;
+    private EditText fullName, email, password;
     public Button button;
+    Button addUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,faculty.class);
                 startActivity(intent);
             }
+
+
         });
-
-        db = new DatabaseHelper(this);
-        data = new ArrayList<>();
-        User user = new User("test", "test", "test");
-//        db.addUser(user);
-//        data = db.getAllUser();
-//        System.out.println(data);
-
     }
 }
