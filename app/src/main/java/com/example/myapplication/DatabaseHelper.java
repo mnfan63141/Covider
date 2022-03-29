@@ -51,6 +51,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // create professor table
+        String CREATE_PROFESSOR_TABLE = "CREATE TABLE " + TABLE_PROFESSOR + "("
+                + COLUMN_COURSEID_LIST + " TEXT PRIMARY KEY " + ")";
+        db.execSQL(CREATE_PROFESSOR_TABLE);
+
+
+        // create course table
+        String CREATE_COURSE_TABLE = "CREATE TABLE " + TABLE_COURSE + "("
+                + COLUMN_COURSE_ID + " TEXT PRIMARY KEY ,"
+                + COLUMN_COURSE_LOCATION + " TEXT" + ")";
+        db.execSQL(CREATE_COURSE_TABLE);
+
         // create table sql query
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + COLUMN_USER_NAME + " TEXT PRIMARY KEY ,"
