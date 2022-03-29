@@ -28,6 +28,7 @@ import java.util.List;
 public class login extends AppCompatActivity implements View.OnClickListener{
     EditText email, password;
     Button enter;
+
    static DatabaseHelper db;
 
     @Override
@@ -52,6 +53,12 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                     SQLiteDatabase database = db.getReadableDatabase();
                     String db_name = db.getDatabaseName();
                     Cursor cursor = database.rawQuery("Select * from Users", null);
+                    Cursor cursorProf = database.rawQuery("Select * from Professors", null);
+                    boolean isProf = false;
+                    if(cursorProf.getCount() > 0){
+                        cursor =cursorProf;
+                        isProf = true;
+                    }
                     if(cursor.getCount() > 0) {
                         while(cursor.moveToNext()) {
                             if (cursor.getString(1).equals(em) &&
@@ -62,8 +69,13 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                         }
                         if(success){
                             Toast.makeText(login.this,  "Login Successful", Toast.LENGTH_SHORT).show();
+
                             Intent myIntent = new Intent(login.this, MainActivity.class);
-                             startActivity(myIntent);
+                            myIntent.putExtra("isProf", isProf);
+                            if(isProf){
+                                myIntent.putExtra("profCourseList", cursor.getString(3));
+                            }
+                            startActivity(myIntent);
                         }
                         else {
                             Toast.makeText(login.this,  "Incorrect login credentials, Try again!", Toast.LENGTH_LONG).show();

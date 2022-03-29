@@ -21,6 +21,7 @@ public class display_risk extends AppCompatActivity {
         SQLiteDatabase dbInstant = db.getReadableDatabase();
         Cursor cursor = dbInstant.rawQuery("Select * from Buildings", null);
         String risk = "0";
+        
         if(cursor.getCount()>0){
             while(cursor.moveToNext()){
                 if(cursor.getString(0).equals(buildingName)){

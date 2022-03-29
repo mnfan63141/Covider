@@ -21,6 +21,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Building table name
     private static final String TABLE_BUILDING = "Buildings";
 
+    // Professor Table name
+    private static final String TABLE_PROFESSOR = "Professors";
+
+    // Course Table Name
+    private static final String TABLE_COURSE = "Courses";
+
     // User Table Columns names
     private static final String COLUMN_USER_NAME = "user_name";
     private static final String COLUMN_USER_EMAIL = "user_email";
@@ -30,9 +36,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_BUILDING_NAME = "building_name";
     private static final String COLUMN_BUILDING_RISKLEVEL = "risk_level";
 
+    //Professor table columns
+    private static final String COLUMN_COURSEID_LIST = "course_id_list";
 
-
-
+    // Course table columns
+    private static final String COLUMN_COURSE_ID = "course_id";
+    private static final String COLUMN_COURSE_LOCATION = "course_location";
 
 
     //Constructor
@@ -48,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_USER_EMAIL + " TEXT,"
                 + COLUMN_USER_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
-        
+
 
         // create the buildings table
         String CREATE_BUILDING_TABLE = "CREATE TABLE " + TABLE_BUILDING + "("
@@ -97,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(db);
 
     }
@@ -117,6 +126,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addProfessor(Professor professor) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_NAME, professor.getFullName());
+        values.put(COLUMN_USER_EMAIL, professor.getEmail());
+        values.put(COLUMN_USER_PASSWORD, professor.getPassword());
+        values.put(COLUMN_COURSEID_LIST, professor.getCourseIdList());
+
+        // Inserting Row
+        db.insert(TABLE_PROFESSOR, null, values);
+        db.close();
+    }
+    public void addCourse(Course course) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_COURSE_ID, course.getId());
+        values.put(COLUMN_COURSE_LOCATION, course.getLocation());
+
+        // Inserting Row
+        db.insert(TABLE_COURSE, null, values);
+        db.close();
+    }
 
 }
