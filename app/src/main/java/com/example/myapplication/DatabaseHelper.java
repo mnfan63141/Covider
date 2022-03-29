@@ -58,6 +58,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_USER_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
 
+        // create table for professors
+        String CREATE_PROFESSOR_TABLE = "CREATE TABLE " + TABLE_PROFESSOR + "("
+                + COLUMN_USER_NAME + " TEXT PRIMARY KEY ,"
+                + COLUMN_USER_EMAIL + " TEXT,"
+                + COLUMN_USER_PASSWORD + " TEXT,"
+                + COLUMN_COURSEID_LIST + " TEXT" + ")";
+        db.execSQL(CREATE_PROFESSOR_TABLE);
+
+        // create table for courses
+        String CREATE_COURSE_TABLE = "CREATE TABLE " + TABLE_COURSE + "("
+                + COLUMN_COURSE_ID + " TEXT PRIMARY KEY ,"
+                + COLUMN_COURSE_LOCATION + " TEXT" + ")";
+        db.execSQL(CREATE_COURSE_TABLE);
 
         // create the buildings table
         String CREATE_BUILDING_TABLE = "CREATE TABLE " + TABLE_BUILDING + "("

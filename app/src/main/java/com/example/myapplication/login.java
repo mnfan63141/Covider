@@ -55,10 +55,11 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                     Cursor cursor = database.rawQuery("Select * from Users", null);
                     Cursor cursorProf = database.rawQuery("Select * from Professors", null);
                     boolean isProf = false;
-                    if(cursorProf.getCount() > 0){
+                    if(cursorProf != null && cursorProf.getCount() > 0){
                         cursor =cursorProf;
                         isProf = true;
                     }
+
                     if(cursor.getCount() > 0) {
                         while(cursor.moveToNext()) {
                             if (cursor.getString(1).equals(em) &&
