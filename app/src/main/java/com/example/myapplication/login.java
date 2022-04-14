@@ -8,22 +8,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.database.Cursor;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.myapplication.databinding.ActivityLoginBinding;
-
-import java.util.List;
 
 public class login extends AppCompatActivity implements View.OnClickListener{
     EditText email, password;
@@ -36,7 +25,7 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         boolean flag1, flag2 = false;
         setContentView(R.layout.activity_login);
-        email = findViewById(R.id.email);
+        email = findViewById(R.id.email2);
         password = findViewById(R.id.password);
         enter = findViewById(R.id.signIn);
 

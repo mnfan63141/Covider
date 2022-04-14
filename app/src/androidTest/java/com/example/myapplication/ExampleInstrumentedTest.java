@@ -7,18 +7,12 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-import android.content.Context;
-
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
-
-import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 /**
  * Instrumented test, which will execute on an Android device.
@@ -33,7 +27,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void facultySigninTestExistance() {
 
-        onView(withId(R.id.email)).perform(typeText("g"));
+        onView(withId(R.id.email2)).perform(typeText("g"));
         onView(withId(R.id.password)).perform(typeText("g"));
         onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
@@ -57,14 +51,14 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.email1)).perform(typeText("g1"));
         onView(withId(R.id.password1)).perform(typeText("g1"));
         onView(withId(R.id.courses)).perform(typeText("0-1"));
-        onView(withId(R.id.email)).perform(typeText("g"));
+        onView(withId(R.id.email2)).perform(typeText("g"));
         onView(withId(R.id.password)).perform(typeText("g"));
         onView(withId(R.id.map)).check(matches(isDisplayed()));
 
     }
     @Test
     public void facultyFullUseTest() {
-        onView(withId(R.id.email)).perform(typeText("g"));
+        onView(withId(R.id.email2)).perform(typeText("g"));
         onView(withId(R.id.password)).perform(typeText("g"));
         onView(withId(R.id.faculty)).perform(click());
         onView(withId(R.id.homebtn)).check(matches(isDisplayed()));
@@ -73,10 +67,10 @@ public class ExampleInstrumentedTest {
     @Test
     public void facultyFalseFlag()
     {
-        onView(withId(R.id.email)).perform(typeText("g222"));
+        onView(withId(R.id.email2)).perform(typeText("g222"));
         onView(withId(R.id.password)).perform(typeText("g222"));
         onView(withId(R.id.faculty)).perform(click());
-        onView(withId(R.id.email)).check(matches(isDisplayed()));
+        onView(withId(R.id.email2)).check(matches(isDisplayed()));
     }
 
 

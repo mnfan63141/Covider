@@ -30,6 +30,13 @@
             android:theme="@style/Theme.MyApplication.NoActionBar"
             android:parentActivityName=".login"/>
         <activity
+            android:name=".Adder"
+            android:exported="false"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            tools:ignore="MissingDefaultResource"
+            android:parentActivityName=".Adder"/>
+        <activity
             android:name=".registerFaculty"
             android:exported="false"
             android:label="@string/title_activity_register"
