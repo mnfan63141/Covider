@@ -1,15 +1,25 @@
 package com.example.myapplication;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import android.content.Intent;
+import android.support.test.rule.ActivityTestRule;
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -17,10 +27,61 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+    @Rule
+    ActivityTestRule<login> activityRule = new ActivityTestRule<>(login.class);
     @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.myapplication", appContext.getPackageName());
+    public void facultySigninTestExistance() {
+
+        onView(withId(R.id.email)).perform(typeText("g"));
+        onView(withId(R.id.password)).perform(typeText("g"));
+        onView(withId(R.id.map)).check(matches(isDisplayed()));
     }
+    @Test
+    public void facultyRegisterTestExistance() {
+        onView(withId(R.id.register)).perform(click());
+        onView(withId(R.id.registerFaculty)).perform(click());
+        onView(withId(R.id.fullName1)).perform(typeText("g"));
+        onView(withId(R.id.email1)).perform(typeText("g"));
+        onView(withId(R.id.password1)).perform(typeText("g"));
+        onView(withId(R.id.courses)).perform(typeText("0-1"));
+        // sleep for a
+        onView(withId(R.id.email1)).check(matches(isDisplayed()));
+
+    }
+    @Test
+    public void facultyCreationTest() {
+        onView(withId(R.id.register)).perform(click());
+        onView(withId(R.id.registerFaculty)).perform(click());
+        onView(withId(R.id.fullName1)).perform(typeText("g1"));
+        onView(withId(R.id.email1)).perform(typeText("g1"));
+        onView(withId(R.id.password1)).perform(typeText("g1"));
+        onView(withId(R.id.courses)).perform(typeText("0-1"));
+        onView(withId(R.id.email)).perform(typeText("g"));
+        onView(withId(R.id.password)).perform(typeText("g"));
+        onView(withId(R.id.map)).check(matches(isDisplayed()));
+
+    }
+    @Test
+    public void facultyFullUseTest() {
+        onView(withId(R.id.email)).perform(typeText("g"));
+        onView(withId(R.id.password)).perform(typeText("g"));
+        onView(withId(R.id.faculty)).perform(click());
+        onView(withId(R.id.homebtn)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void facultyFalseFlag()
+    {
+        onView(withId(R.id.email)).perform(typeText("g222"));
+        onView(withId(R.id.password)).perform(typeText("g222"));
+        onView(withId(R.id.faculty)).perform(click());
+        onView(withId(R.id.email)).check(matches(isDisplayed()));
+    }
+
+
+
+
+
+
 }

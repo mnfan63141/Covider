@@ -56,7 +56,8 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                     Cursor cursor = database.rawQuery("Select * from Users", null);
                     Cursor cursorProf = null;
                     try {
-                        cursorProf =database.rawQuery("Select * from Professors", null);
+                        cursorProf =database.rawQuery("Select * from Professor", null);
+                        Log.v("cursorProf", cursorProf.toString());
                     } catch (Exception e) {
                         Log.d("Error", e.toString());
                     }
@@ -65,6 +66,8 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                         cursor =cursorProf;
                         isProf = true;
                     }
+                    Log.v("Cursor", cursor.getCount() + "");
+                    Log.v("isProf", isProf + "");
 
                     if(cursor.getCount() > 0) {
                         while(cursor.moveToNext()) {
@@ -78,10 +81,15 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                             Toast.makeText(login.this,  "Login Successful", Toast.LENGTH_SHORT).show();
 
                             Intent myIntent = new Intent(login.this, MainActivity.class);
-                            myIntent.putExtra("isProf", isProf);
+                            Bundle b = new Bundle();
+
+                            b.putBoolean("isProf", isProf);
+                            Log.v("isProf1", isProf + "");
                             if(isProf){
-                                myIntent.putExtra("profCourseList", cursor.getString(3));
+                              //  Log.v("III:", cursor.());
+                                b.putString("profCourseList", cursor.getString(0));
                             }
+                            myIntent.putExtras(b);
                             startActivity(myIntent);
                         }
                         else {

@@ -56,13 +56,27 @@ public class registerFaculty extends AppCompatActivity  {
                     Toast.makeText(registerFaculty.this, "Please fill all the data", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                // check formatting
+
                 String[] lines = coursesString.split("\n");
                 String totalLine = "";
                 for (String line : lines) {
                     totalLine += line + " ";
                 }
-                Professor user = Professor.parseCourseIdList(totalLine, name, passwordString, emailString);
-                db.addProfessor(user);
+                Professor user = null;
+                try {
+                    user = Professor.parseCourseIdList(totalLine, name, passwordString, emailString);
+                } catch (Exception e) {
+                    Toast.makeText(registerFaculty.this, "Please enter valid courses", Toast.LENGTH_SHORT).show();
+                }
+                if (user == null) {
+                    Toast.makeText(registerFaculty.this, "Please enter valid courses", Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    db.addProfessor(user);
+                }catch (Exception e){
+                    Toast.makeText(registerFaculty.this, "Email already exists", Toast.LENGTH_SHORT).show();
+                }
                 db.addUser(user);
                 Toast.makeText(registerFaculty.this, "User Added", Toast.LENGTH_SHORT).show();
                 fullName.setText("");

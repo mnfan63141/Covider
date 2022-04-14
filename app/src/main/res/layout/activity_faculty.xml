@@ -35,13 +35,15 @@
                 android:orientation="vertical"
                 android:layout_weight=".5">
 
-                <Button
-                    android:id="@+id/homebtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="home" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/homebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="home"
+        android:translationY="1500px" />
 
 </RelativeLayout>

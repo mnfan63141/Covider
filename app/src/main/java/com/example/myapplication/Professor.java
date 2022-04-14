@@ -30,19 +30,27 @@ public class Professor extends User {
         }
         return courseIdList;
     }
+    public void addCourse(Course course)
+    {
+        courses.add(course);
+    }
     public List<Course> getCourses() {
         return courses;
     }
     public static Professor parseCourseIdList(String courseIdList, String name, String email, String password)
     {
-        Professor professor = new Professor(name, email, password);
-        String[] courseIds = courseIdList.split(" ");
-        for(String courseId : courseIds)
+        try {
+            Professor professor = new Professor(name, email, password);
+            String[] courseIds = courseIdList.split(" ");
+            for (String courseId : courseIds) {
+                String[] courseIdParts = courseId.split("-");
+                professor.courses.add(new Course(courseIdParts[0], courseIdParts[1]));
+            }
+            return professor;
+        }catch (Exception e)
         {
-            String[] courseIdParts = courseId.split("-");
-            professor.courses.add(new Course(courseIdParts[0], courseIdParts[1]));
+            return null;
         }
-        return professor;
     }
 
 

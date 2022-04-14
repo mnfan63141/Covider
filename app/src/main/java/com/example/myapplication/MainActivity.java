@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.media.MediaPlayer;
 import android.view.View.OnClickListener;
@@ -21,21 +23,33 @@ public class MainActivity extends AppCompatActivity {
     public Button button;
     Button addUser;
     boolean isProf = false;
+    String courseString = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            isProf = savedInstanceState.getBoolean("isProf", false);
-        } catch (Exception e) {
-            isProf = false;
+        if(savedInstanceState == null) {
+            try {
+                isProf = getIntent().getExtras().getBoolean("isProf");
+            } catch (Exception e) {
+                Log.d("MainActivity", "onCreate: " + e.getMessage());
+                isProf = false;
+            }
         }
+
+        Log.v("isProf2", isProf + "");
         setTitle("Covider");
         button = (Button) findViewById(R.id.map);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,CampusMap.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -45,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,campus_list.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -54,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,checkin.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -62,8 +88,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isProf) {
+                    courseString = getIntent().getExtras().getString("profCourseList");
                     Intent intent = new Intent(MainActivity.this, faculty.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
 
+                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }else {
                     Toast.makeText(MainActivity.this, "You are not a professor", Toast.LENGTH_SHORT).show();
@@ -72,5 +104,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean("isProf", isProf);
+        savedInstanceState.putString("profCourseList", courseString);
+
+    }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        isProf = savedInstanceState.getBoolean("isProf");
+        courseString = savedInstanceState.getString("profCourseList");
     }
 }

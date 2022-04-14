@@ -78,6 +78,12 @@ public class CampusMap extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v){
         String buildingName = "";
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+        bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+        myIntent.putExtras(bundle);
         if(v.getId() == R.id.taper){
 
                 myIntent.putExtra("BUILDING_SELECTED", "Taper Hall");

@@ -2,11 +2,15 @@
 package com.example.myapplication;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -14,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "UserManager6.db";
+    private static final String DATABASE_NAME = "UserManager9.db";
 
     // User table name
     private static final String TABLE_USER = "Users";
@@ -22,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_BUILDING = "Buildings";
 
     // Professor Table name
-    private static final String TABLE_PROFESSOR = "Professors";
+    private static final String TABLE_PROFESSOR = "Professor";
 
     // Course Table Name
     private static final String TABLE_COURSE = "Courses";
@@ -52,81 +56,85 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // create professor table
+
         String CREATE_PROFESSOR_TABLE = "CREATE TABLE " + TABLE_PROFESSOR + "("
-                + COLUMN_COURSEID_LIST + " TEXT PRIMARY KEY " + ")";
-        db.execSQL(CREATE_PROFESSOR_TABLE);
+                + COLUMN_COURSEID_LIST + " TEXT,"
+                + COLUMN_USER_NAME + " TEXT PRIMARY KEY ,"
+                + COLUMN_USER_EMAIL + " TEXT,"
+                + COLUMN_USER_PASSWORD + " TEXT" + ")";
+        try {
+            db.execSQL(CREATE_PROFESSOR_TABLE);
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
+        Log.v("DatabaseHelper", CREATE_PROFESSOR_TABLE);
 
 
         // create course table
         String CREATE_COURSE_TABLE = "CREATE TABLE " + TABLE_COURSE + "("
                 + COLUMN_COURSE_ID + " TEXT PRIMARY KEY ,"
-                + COLUMN_COURSE_LOCATION + " TEXT" + ")";
-        db.execSQL(CREATE_COURSE_TABLE);
+                + COLUMN_COURSE_LOCATION + " TEXT " + ")";
+
+        try {
+            db.execSQL(CREATE_COURSE_TABLE);
+        } catch (Exception e) {}
 
         // create table sql query
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + COLUMN_USER_NAME + " TEXT PRIMARY KEY ,"
                 + COLUMN_USER_EMAIL + " TEXT,"
                 + COLUMN_USER_PASSWORD + " TEXT" + ")";
-        db.execSQL(CREATE_USER_TABLE);
-
-        // create table for professors
-        String CREATE_PROFESSOR_TABLE = "CREATE TABLE " + TABLE_PROFESSOR + "("
-                + COLUMN_USER_NAME + " TEXT PRIMARY KEY ,"
-                + COLUMN_USER_EMAIL + " TEXT,"
-                + COLUMN_USER_PASSWORD + " TEXT,"
-                + COLUMN_COURSEID_LIST + " TEXT" + ")";
-        db.execSQL(CREATE_PROFESSOR_TABLE);
-
-        // create table for courses
-        String CREATE_COURSE_TABLE = "CREATE TABLE " + TABLE_COURSE + "("
-                + COLUMN_COURSE_ID + " TEXT PRIMARY KEY ,"
-                + COLUMN_COURSE_LOCATION + " TEXT" + ")";
-        db.execSQL(CREATE_COURSE_TABLE);
+        try {
+            db.execSQL(CREATE_USER_TABLE);
+        }catch(Exception e){}
 
         // create the buildings table
         String CREATE_BUILDING_TABLE = "CREATE TABLE " + TABLE_BUILDING + "("
                 + COLUMN_BUILDING_NAME + " TEXT PRIMARY KEY ,"
                 + COLUMN_BUILDING_RISKLEVEL + " INTEGER "
                 + ")";
-        db.execSQL(CREATE_BUILDING_TABLE);
+        try {
+            db.execSQL(CREATE_BUILDING_TABLE);
+        }catch(Exception e){}
         // adding buildings and risk levels
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_BUILDING_NAME, "Campus Center");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "1");
-        db.insert(TABLE_BUILDING, null, values);
+        try {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_BUILDING_NAME, "Campus Center");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Taper Hall");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "3");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Taper Hall");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "3");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Salvatori");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "2");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Salvatori");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "2");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Fertitta");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "1");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Fertitta");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Engemann");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "4");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Engemann");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "4");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Kaufman");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "3");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Kaufman");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "3");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Kaprielian");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "2");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Kaprielian");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "2");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Leventhal");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "5");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Leventhal");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "5");
+            db.insert(TABLE_BUILDING, null, values);
 
-        values.put(COLUMN_BUILDING_NAME, "Annenberg");
-        values.put(COLUMN_BUILDING_RISKLEVEL, "1");
-        db.insert(TABLE_BUILDING, null, values);
+            values.put(COLUMN_BUILDING_NAME, "Annenberg");
+            values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+            db.insert(TABLE_BUILDING, null, values);
+        }catch(Exception e){}
     }
 
     @Override
@@ -176,4 +184,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Professor getProfessor(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_PROFESSOR, new String[] { COLUMN_USER_NAME, COLUMN_USER_EMAIL, COLUMN_USER_PASSWORD, COLUMN_COURSEID_LIST }, COLUMN_USER_NAME + "=?",
+                new String[] { name }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Professor professor = Professor.parseCourseIdList(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        // return user
+        return professor;
+    }
 }

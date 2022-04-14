@@ -24,6 +24,12 @@ public class campus_list extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(campus_list.this,MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

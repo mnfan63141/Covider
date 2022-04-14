@@ -30,7 +30,10 @@ public class Course {
         }
         return Integer.parseInt(risk);
     }
-
+    public String toString()
+    {
+        return id + "-" + location;
+    }
     public String getId() {
         return id;
     }
