@@ -59,6 +59,7 @@ public class register extends AppCompatActivity  {
                     Toast.makeText(register.this, "Please fill all the data", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Log.v("register", "onClick: attempting to add user");
                 User user = new User(name, passwordString, emailString);
                 db.addUser(user);
                 Toast.makeText(register.this, "User Added", Toast.LENGTH_SHORT).show();

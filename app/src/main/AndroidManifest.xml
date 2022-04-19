@@ -37,6 +37,27 @@
             tools:ignore="MissingDefaultResource"
             android:parentActivityName=".Adder"/>
         <activity
+            android:name=".AddClass"
+            android:exported="false"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            tools:ignore="MissingDefaultResource"
+            android:parentActivityName=".AddClass"/>
+        <activity
+            android:name=".Status"
+            android:exported="false"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            tools:ignore="MissingDefaultResource"
+            android:parentActivityName=".Status"/>
+        <activity
+            android:name=".schedule"
+            android:exported="false"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            tools:ignore="MissingDefaultResource"
+            android:parentActivityName=".schedule"/>
+        <activity
             android:name=".registerFaculty"
             android:exported="false"
             android:label="@string/title_activity_register"

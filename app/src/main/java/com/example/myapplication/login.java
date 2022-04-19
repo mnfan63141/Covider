@@ -17,6 +17,7 @@ import android.widget.Button;
 public class login extends AppCompatActivity implements View.OnClickListener{
     EditText email, password;
     Button enter;
+    public static String loginUser;
 
    static DatabaseHelper db;
 
@@ -42,17 +43,19 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                 else {
                     SQLiteDatabase database = db.getReadableDatabase();
                     String db_name = db.getDatabaseName();
-                    Cursor cursor = database.rawQuery("Select * from Users", null);
+                    String query = "SELECT * FROM Users" + " WHERE user_email = '" + em + "' AND user_password = '" + pass + "'";
+                    Cursor cursor = database.rawQuery(query, null);
                     Cursor cursorProf = null;
                     try {
-                        cursorProf =database.rawQuery("Select * from Professor", null);
+                        query = "SELECT * FROM Professor" + " WHERE user_email = '" + em + "' AND user_password = '" + pass + "'";
+                        cursorProf =database.rawQuery(query, null);
                         Log.v("cursorProf", cursorProf.toString());
                     } catch (Exception e) {
                         Log.d("Error", e.toString());
                     }
                     boolean isProf = false;
                     if(cursorProf != null && cursorProf.getCount() > 0){
-                        cursor =cursorProf;
+                        cursor = cursorProf;
                         isProf = true;
                     }
                     Log.v("Cursor", cursor.getCount() + "");
@@ -60,13 +63,16 @@ public class login extends AppCompatActivity implements View.OnClickListener{
 
                     if(cursor.getCount() > 0) {
                         while(cursor.moveToNext()) {
+                            Log.e("Email", cursor.getString(1));
+                            Log.e("Password", cursor.getString(2));
                             if (cursor.getString(1).equals(em) &&
                                     cursor.getString(2).equals(pass)) {
                                 success = true;
+                                loginUser = cursor.getString(1);
                                 break;
                             }
                         }
-                        if(success){
+                        if(success) {
                             Toast.makeText(login.this,  "Login Successful", Toast.LENGTH_SHORT).show();
 
                             Intent myIntent = new Intent(login.this, MainActivity.class);

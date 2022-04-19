@@ -83,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button logoutBtn = (Button) findViewById(R.id.logout);
+        logoutBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,login.class);
+                startActivity(intent);
+            }
+        });
         Button facultyBtn = (Button) findViewById(R.id.faculty);
         facultyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +111,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+        });
+        Button schedule = (Button) findViewById(R.id.schedule);
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, schedule.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
         });
     }
     @Override

@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "UserManager110.db";
+    private static final String DATABASE_NAME = "UserManager43k333.db";
 
     // User table name
     private static final String TABLE_USER = "Users";
@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_COURSE_ID = "course_id";
     private static final String COLUMN_COURSE_LOCATION = "course_location";
     private static final String COLUMN_COURSE_EMAILS = "course_emails";
-
+    private static final String COLUMN_COURSE_STATUS = "course_status";
 
     //Constructor
     public DatabaseHelper(Context context) {
@@ -75,7 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_COURSE_TABLE = "CREATE TABLE " + TABLE_COURSE + "("
                 + COLUMN_COURSE_ID + " TEXT PRIMARY KEY ,"
                 + COLUMN_COURSE_EMAILS + " TEXT,"
-                + COLUMN_COURSE_LOCATION + " TEXT " + ")";
+                + COLUMN_COURSE_LOCATION + " TEXT,"
+                + COLUMN_COURSE_STATUS + " TEXT " + ")";
 
         try {
             db.execSQL(CREATE_COURSE_TABLE);
@@ -140,7 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values1 = new ContentValues();
             values1.put(COLUMN_COURSE_ID, 1);
             values1.put(COLUMN_COURSE_LOCATION, "Annenberg");
-            values1.put(COLUMN_COURSE_EMAILS, "2 3 4 5 6 7");
+            values1.put(COLUMN_COURSE_EMAILS, "1 2 3 4 5 6 7");
+            values1.put(COLUMN_COURSE_STATUS, "In-Person");
             db.insert(TABLE_COURSE, null, values1);
         }catch(Exception e){}
     }
@@ -188,7 +190,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_COURSE_ID, course.getId());
         values.put(COLUMN_COURSE_LOCATION, course.getLocation());
-
+        values.put(COLUMN_COURSE_EMAILS, "");
+        values.put(COLUMN_COURSE_STATUS, "In-Person");
         // Inserting Row
         db.insert(TABLE_COURSE, null, values);
         db.close();
@@ -229,8 +232,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
         values.put(COLUMN_COURSE_ID, courseName);
         values.put(COLUMN_COURSE_LOCATION, cursor.getString(1));
-        values.put(COLUMN_COURSE_LOCATION, cursor.getString(2) + " " + emailString);
+        values.put(COLUMN_COURSE_EMAILS, cursor.getString(2) + " " + emailString);
         db.update(TABLE_COURSE, values, COLUMN_COURSE_ID + "=?", new String[] { courseName });
 
+    }
+
+    public String addCourseToProfessor(Course course, String profCourseList) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        String courseName = course.getId();
+
+        Log.v("DDD",courseName);
+        Cursor cursor = db.query(TABLE_PROFESSOR, new String[] { COLUMN_USER_NAME, COLUMN_USER_EMAIL, COLUMN_USER_PASSWORD, COLUMN_COURSEID_LIST }, COLUMN_COURSEID_LIST + "=?",
+                new String[] { profCourseList }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        values.put(COLUMN_USER_NAME, cursor.getString(0));
+        values.put(COLUMN_USER_EMAIL, cursor.getString(1));
+        values.put(COLUMN_USER_PASSWORD, cursor.getString(2));
+        String putty = profCourseList + " "+ course.getId() +"-"+course.getLocation();
+        putty = putty.trim().replace(" +", " ");
+        values.put(COLUMN_COURSEID_LIST, putty);
+        db.update(TABLE_PROFESSOR, values, COLUMN_COURSEID_LIST + "=?", new String[] { profCourseList });
+        return putty;
+    }
+
+    public String getCourseStatus(String courseName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_COURSE, new String[] { COLUMN_COURSE_ID, COLUMN_COURSE_LOCATION, COLUMN_COURSE_EMAILS, COLUMN_COURSE_STATUS}, COLUMN_COURSE_ID + "=?",
+                new String[] { courseName }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        return cursor.getString(3);
+    }
+
+    public void updateCourseStatus(String courseName, String online) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_COURSE_STATUS, online);
+        db.update(TABLE_COURSE, values, COLUMN_COURSE_ID + "=?", new String[] { courseName });
+    }
+
+    public Course[] getCourses(String loginUser) {
+        // find all courses where loginUser is in COLUMN_COURSE_EMAILS
+        Log.v("DDD",loginUser);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_COURSE, new String[] { COLUMN_COURSE_ID, COLUMN_COURSE_LOCATION, COLUMN_COURSE_EMAILS, COLUMN_COURSE_STATUS}, COLUMN_COURSE_EMAILS + " LIKE ?",
+                new String[] { "%" + loginUser + "%" }, null, null, null, null);
+        Log.e("DDD", "cursor: " + cursor.getCount());
+        if (cursor != null)
+            cursor.moveToFirst();
+        int count = cursor.getCount();
+        Course[] courses = new Course[count];
+        for (int i = 0; i < count; i++) {
+            courses[i] = new Course(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            cursor.moveToNext();
+        }
+        return courses;
     }
 }

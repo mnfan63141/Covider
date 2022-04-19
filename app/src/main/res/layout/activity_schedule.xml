@@ -47,11 +47,4 @@
         android:text="home"
         android:translationY="1500px" />
 
-    <Button
-        android:id="@+id/addClass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Class"
-        android:translationY="1400px" />
-
 </RelativeLayout>

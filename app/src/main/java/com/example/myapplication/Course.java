@@ -11,9 +11,19 @@ import java.util.List;
 public class Course {
     private String id;
     private String location;
+    private String emailList;
+    private String status;
     public Course(String id, String location) {
         this.id = id;
         this.location = location;
+        emailList = "";
+        status = "";
+    }
+    public Course(String id, String location, String emailList, String status) {
+        this.id = id;
+        this.location = location;
+        this.emailList = emailList;
+        this.status = status;
     }
     public int calculateRisk(Context context)
     {
@@ -67,6 +77,22 @@ public class Course {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getEmailList() {
+        return emailList;
+    }
+
+    public void setEmailList(String emailList) {
+        this.emailList = emailList;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

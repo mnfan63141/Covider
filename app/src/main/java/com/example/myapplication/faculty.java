@@ -37,6 +37,20 @@ public class faculty extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button button1 = (Button) findViewById(R.id.addClass);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(faculty.this,AddClass.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+
+                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         // add new table to activity_faculty.xml
         TableLayout tableLayout = new TableLayout(this);
         tableLayout.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
@@ -47,7 +61,7 @@ public class faculty extends AppCompatActivity {
 
 
 
-        String courseString = getIntent().getExtras().getString("profCourseList");
+        String courseString = getIntent().getExtras().getString("profCourseList").replaceAll(" +", " ").trim();
         Log.v("Faculty", "courseString: " + courseString);
         Professor prof = Professor.parseCourseIdList(courseString, "", "","");
         TableRow row = new TableRow(this);
@@ -96,18 +110,25 @@ public class faculty extends AppCompatActivity {
             d1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
             tableRow.addView(d1);
             Button e1 = new Button(this);
+            final Professor p = prof;
+            final int j = i;
             e1.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    Toast.makeText(faculty.this,  "Push sent", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(faculty.this,Status.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
 
+                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                    bundle.putString("courseName", p.getCourses().get(j).getId());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
             });
-            e1.setText("Online");
+            e1.setText("Class Status");
             tableRow.addView(e1);
             Button f1 = new Button(this);
-            final Professor p = prof;
-            final int j = i;
+
             f1.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
