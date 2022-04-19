@@ -60,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,campus_list.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                if(getIntent().getExtras() != null) {
+                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
-
+                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                }
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
