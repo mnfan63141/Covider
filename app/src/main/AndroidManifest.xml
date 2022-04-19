@@ -17,18 +17,17 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".display_risk_map"
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName=".CampusMap" />
         <activity
             android:name=".display_risk"
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName=".campus_list" />
         <activity
-            android:name=".register"
-            android:exported="false"
-            android:label="@string/title_activity_register"
-            android:theme="@style/Theme.MyApplication.NoActionBar"
-            android:parentActivityName=".login"/>
+            android:name=".login"
+            android:exported="true" >
+
+            </activity>
 
         <activity
             android:name=".faculty"
@@ -38,18 +37,26 @@
             android:exported="false" />
         <activity
             android:name=".campus_list"
-            android:exported="false" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".CampusMap"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_campus_map"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity" >
+
+        </activity>
+
         <activity
-            android:name=".login"
-            android:exported="true">
+            android:name=".register"
+            android:exported="true"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:parentActivityName=".login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

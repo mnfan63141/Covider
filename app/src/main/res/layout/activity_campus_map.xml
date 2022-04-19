@@ -26,22 +26,86 @@
         android:id="@+id/taper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="5sp"
+        android:textSize="4sp"
         android:textStyle="bold"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="160dp"
+        android:layout_marginTop="321dp"
+        android:layout_marginLeft="165dp"
         android:text="Taper" />
 
     <TextView
         android:id="@+id/salvatori"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="5sp"
+        android:textSize="4sp"
         android:textStyle="bold"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="78dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginLeft="79dp"
         android:text="Salvatori" />
 
+    <TextView
+        android:id="@+id/campusCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:layout_marginTop="256dp"
+        android:layout_marginLeft="84dp"
+        android:text="Campus Center" />
+
+    <TextView
+        android:id="@+id/fertitta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="4sp"
+        android:textStyle="bold"
+        android:layout_marginTop="395dp"
+        android:layout_marginLeft="59dp"
+        android:text="Fertitta" />
+    <TextView
+        android:id="@+id/engemann"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="4sp"
+        android:textStyle="bold"
+        android:layout_marginTop="167dp"
+        android:layout_marginLeft="251dp"
+        android:text="Engemann" />
+    <TextView
+        android:id="@+id/kaufman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="4sp"
+        android:textStyle="bold"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="205dp"
+        android:text="Kaufman" />
+
+    <TextView
+        android:id="@+id/kaprielian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="4sp"
+        android:textStyle="bold"
+        android:layout_marginTop="108dp"
+        android:layout_marginLeft="170dp"
+        android:text="Kaprielian" />
+    <TextView
+        android:id="@+id/leventhal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="4sp"
+        android:textStyle="bold"
+        android:layout_marginTop="285dp"
+        android:layout_marginLeft="68dp"
+        android:text="Leventhal" />
+    <TextView
+        android:id="@+id/annenberg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="4sp"
+        android:textStyle="bold"
+        android:layout_marginTop="262dp"
+        android:layout_marginLeft="158dp"
+        android:text="Annenberg" />
 
 </FrameLayout>
