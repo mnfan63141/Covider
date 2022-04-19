@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class register extends AppCompatActivity  {
+public class register extends AppCompatActivity implements View.OnClickListener {
 
     public static List<User> data;
     DatabaseHelper db;
@@ -69,6 +69,16 @@ public class register extends AppCompatActivity  {
                 startActivity(new Intent(register.this, login.class));
             }
         });
+        TextView covider = (TextView) findViewById(R.id.banner);
+        covider.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.banner:
+                startActivity(new Intent(this,login.class));
+        }
     }
 }
 
