@@ -78,6 +78,9 @@ public class registerFaculty extends AppCompatActivity  {
                     Toast.makeText(registerFaculty.this, "Email already exists", Toast.LENGTH_SHORT).show();
                 }
                 db.addUser(user);
+                for(Course course : user.getCourses()){
+                    db.addCourse(course);
+                }
                 Toast.makeText(registerFaculty.this, "User Added", Toast.LENGTH_SHORT).show();
                 fullName.setText("");
                 email.setText("");

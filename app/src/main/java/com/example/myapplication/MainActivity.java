@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if(savedInstanceState == null) {
             try {
-                isProf = getIntent().getExtras().getBoolean("isProf");
+                isProf = login.isProf;
             } catch (Exception e) {
                 Log.d("MainActivity", "onCreate: " + e.getMessage());
                 isProf = false;
@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,CampusMap.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,campus_list.class);
                 Bundle bundle = new Bundle();
                 if(getIntent().getExtras() != null) {
-                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                    bundle.putBoolean("isProf", login.isProf);
 
-                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                    bundle.putString("profCourseList", login.profCourseList);
                 }
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this,checkin.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -97,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isProf) {
-                    courseString = getIntent().getExtras().getString("profCourseList");
+                    courseString = login.profCourseList;
                     Intent intent = new Intent(MainActivity.this, faculty.class);
                     Bundle bundle = new Bundle();
-                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                    bundle.putBoolean("isProf", login.isProf);
 
-                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                    bundle.putString("profCourseList", login.profCourseList);
 
                     intent.putExtras(bundle);
                     startActivity(intent);
@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, schedule.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);

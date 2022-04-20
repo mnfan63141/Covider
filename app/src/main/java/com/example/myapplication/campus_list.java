@@ -71,6 +71,12 @@ public class campus_list extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(campus_list.this,MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isProf", login.isProf);
+
+                bundle.putString("profCourseList", login.profCourseList);
+
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -89,6 +95,12 @@ public class campus_list extends AppCompatActivity {
         public void onItemClick(AdapterView parent, View v, int pos, long id) {
             String buildingName = (String) list.getItemAtPosition(pos);
             myIntent.putExtra("BUILDING_SELECTED", buildingName);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("isProf", login.isProf);
+
+            bundle.putString("profCourseList", login.profCourseList);
+
+            myIntent.putExtras(bundle);
             startActivity(myIntent);
         }
     };

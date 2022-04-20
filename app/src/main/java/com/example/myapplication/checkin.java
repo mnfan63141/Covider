@@ -20,9 +20,9 @@ public class checkin extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(checkin.this,MainActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);

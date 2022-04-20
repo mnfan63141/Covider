@@ -18,6 +18,8 @@ public class login extends AppCompatActivity implements View.OnClickListener{
     EditText email, password;
     Button enter;
     public static String loginUser;
+    public static boolean isProf;
+    public static String profCourseList;
 
    static DatabaseHelper db;
 
@@ -53,10 +55,10 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                     } catch (Exception e) {
                         Log.d("Error", e.toString());
                     }
-                    boolean isProf = false;
+                    login.isProf = false;
                     if(cursorProf != null && cursorProf.getCount() > 0){
                         cursor = cursorProf;
-                        isProf = true;
+                        login.isProf = true;
                     }
                     Log.v("Cursor", cursor.getCount() + "");
                     Log.v("isProf", isProf + "");
@@ -83,6 +85,7 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                             if(isProf){
                               //  Log.v("III:", cursor.());
                                 b.putString("profCourseList", cursor.getString(0));
+                                login.profCourseList = cursor.getString(0);
                             }
                             myIntent.putExtras(b);
                             startActivity(myIntent);

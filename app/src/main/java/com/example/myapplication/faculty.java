@@ -29,9 +29,9 @@ public class faculty extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(faculty.this,MainActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -43,9 +43,9 @@ public class faculty extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(faculty.this,AddClass.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -61,7 +61,7 @@ public class faculty extends AppCompatActivity {
 
 
 
-        String courseString = getIntent().getExtras().getString("profCourseList").replaceAll(" +", " ").trim();
+        String courseString = login.profCourseList.replaceAll(" +", " ").trim();
         Log.v("Faculty", "courseString: " + courseString);
         Professor prof = Professor.parseCourseIdList(courseString, "", "","");
         TableRow row = new TableRow(this);
@@ -117,9 +117,9 @@ public class faculty extends AppCompatActivity {
                 public void onClick(View v){
                     Intent intent = new Intent(faculty.this,Status.class);
                     Bundle bundle = new Bundle();
-                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                    bundle.putBoolean("isProf", login.isProf);
 
-                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                    bundle.putString("profCourseList", login.profCourseList);
                     bundle.putString("courseName", p.getCourses().get(j).getId());
                     intent.putExtras(bundle);
                     startActivity(intent);
@@ -134,9 +134,9 @@ public class faculty extends AppCompatActivity {
                 public void onClick(View v){
                     Intent intent = new Intent(faculty.this,Adder.class);
                     Bundle bundle = new Bundle();
-                    bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                    bundle.putBoolean("isProf", login.isProf);
 
-                    bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                    bundle.putString("profCourseList", login.profCourseList);
                     bundle.putString("courseName", p.getCourses().get(j).getId());
                     intent.putExtras(bundle);
                     startActivity(intent);

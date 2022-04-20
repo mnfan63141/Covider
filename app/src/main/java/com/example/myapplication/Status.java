@@ -46,9 +46,9 @@ public class Status extends AppCompatActivity  {
                 status.setText("Online");
                 Intent intent = new Intent(Status.this,faculty.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -63,9 +63,9 @@ public class Status extends AppCompatActivity  {
                 status.setText("Hybrid");
                 Intent intent = new Intent(Status.this,faculty.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -80,9 +80,9 @@ public class Status extends AppCompatActivity  {
                 status.setText("In-Person");
                 Intent intent = new Intent(Status.this,faculty.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);

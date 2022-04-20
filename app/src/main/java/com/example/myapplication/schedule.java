@@ -24,14 +24,14 @@ public class schedule extends AppCompatActivity {
         setContentView(R.layout.activity_schedule);
         Log.d("Schedule", "onCreate: ");
         Button button = (Button) findViewById(R.id.homebtn);
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                Intent intent = new Intent(schedule.this,MainActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(schedule.this, MainActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", getIntent().getExtras().getString("profCourseList"));
+                bundle.putString("profCourseList", login.profCourseList);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -62,38 +62,44 @@ public class schedule extends AppCompatActivity {
         row.addView(e);
         tableLayout.addView(row);
 
-        Course[] courses = login.db.getCourses(login.loginUser);
-
-        for(int i = 0; i < courses.length; i++) {
-            // add row to table
-            TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
-            tableRowParams.setMargins(0, 0, 0, 0);
-            TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(tableRowParams);
-            tableRow.setPadding(0, 0, 0, 0);
-            //   tableRow.setBackgroundColor(getResources().getColor(R.color));
-            tableRow.setGravity(View.TEXT_ALIGNMENT_CENTER);
-            // add course location
-            TextView b1 = new TextView(this);
-            b1.setText(courses[i].getId());
-            b1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
-            tableRow.addView(b1);
-            TextView c1 = new TextView(this);
-            c1.setText(courses[i].getLocation());
-            c1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
-            tableRow.addView(c1);
-            TextView d1 = new TextView(this);
-            d1.setText(courses[i].calculateRisk(schedule.this)+"");
-            d1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
-            tableRow.addView(d1);
-            TextView e1 = new TextView(this);
-            e1.setText(courses[i].getStatus()+"");
-            e1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
-            tableRow.addView(e1);
-            tableLayout.addView(tableRow);
+        Course[] courses = null;
+        if (login.isProf) {
+            courses = Professor.parseCourseIdList(login.profCourseList, "", "", "").getCourses().toArray(new Course[0]);
+        } else {
+            courses = login.db.getCourses(login.loginUser);
         }
-        // add tablelayout to activity_faculty.xml
-        this.addContentView(tableLayout, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
+        if (courses != null) {
+            for (int i = 0; i < courses.length; i++) {
+                // add row to table
+                TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+                tableRowParams.setMargins(0, 0, 0, 0);
+                TableRow tableRow = new TableRow(this);
+                tableRow.setLayoutParams(tableRowParams);
+                tableRow.setPadding(0, 0, 0, 0);
+                //   tableRow.setBackgroundColor(getResources().getColor(R.color));
+                tableRow.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                // add course location
+                TextView b1 = new TextView(this);
+                b1.setText(courses[i].getId());
+                b1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
+                tableRow.addView(b1);
+                TextView c1 = new TextView(this);
+                c1.setText(courses[i].getLocation());
+                c1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
+                tableRow.addView(c1);
+                TextView d1 = new TextView(this);
+                d1.setText(courses[i].calculateRisk(schedule.this) + "");
+                d1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
+                tableRow.addView(d1);
+                TextView e1 = new TextView(this);
+                e1.setText(courses[i].getStatus() + "");
+                e1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.FILL_PARENT));
+                tableRow.addView(e1);
+                tableLayout.addView(tableRow);
+            }
+            // add tablelayout to activity_faculty.xml
+            this.addContentView(tableLayout, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
+        }
     }
 
 }

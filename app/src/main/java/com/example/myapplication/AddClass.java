@@ -39,10 +39,10 @@ public class AddClass extends AppCompatActivity  {
                     Toast.makeText(AddClass.this, "Please fill all the data", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String cString = getIntent().getExtras().getString("profCourseList");
+                String cString = login.profCourseList;
                 try {
                     db.addCourse(new Course(idString, locString));
-                    cString = db.addCourseToProfessor(new Course(idString, locString), getIntent().getExtras().getString("profCourseList"));
+                    cString = db.addCourseToProfessor(new Course(idString, locString), login.profCourseList);
                 }catch(Exception e)
                 {
                     Toast.makeText(AddClass.this, "Course Already Exists", Toast.LENGTH_SHORT).show();
@@ -54,7 +54,7 @@ public class AddClass extends AppCompatActivity  {
                 loc.setText("");
                 Intent intent = new Intent(AddClass.this,faculty.class);
                 Bundle bundle = new Bundle();
-                bundle.putBoolean("isProf", getIntent().getExtras().getBoolean("isProf"));
+                bundle.putBoolean("isProf", login.isProf);
 
                 bundle.putString("profCourseList", cString);
 

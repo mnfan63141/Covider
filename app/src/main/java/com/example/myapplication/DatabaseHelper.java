@@ -204,7 +204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[] { courseId }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        Log.e("AAA",cursor.getString(2));
+     //   Log.e("AAA",cursor.getString(2));
         if(cursor.getCount() > 0)
             return cursor.getString(2).split(" ");
         return null;
