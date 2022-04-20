@@ -3,6 +3,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +43,10 @@ public class AddClass extends AppCompatActivity  {
                 String cString = login.profCourseList;
                 try {
                     db.addCourse(new Course(idString, locString));
-                    cString = db.addCourseToProfessor(new Course(idString, locString), login.profCourseList);
+                    cString = db.addCourseToProfessor(new Course(idString, locString), login.loginUser);
                 }catch(Exception e)
                 {
+                    Log.e("Error", e.getMessage());
                     Toast.makeText(AddClass.this, "Course Already Exists", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -56,7 +58,7 @@ public class AddClass extends AppCompatActivity  {
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("isProf", login.isProf);
 
-                bundle.putString("profCourseList", cString);
+                login.profCourseList = cString;
 
                 intent.putExtras(bundle);
                 startActivity(intent);

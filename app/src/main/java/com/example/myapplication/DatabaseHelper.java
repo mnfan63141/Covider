@@ -243,17 +243,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String courseName = course.getId();
 
         Log.v("DDD",courseName);
-        Cursor cursor = db.query(TABLE_PROFESSOR, new String[] { COLUMN_USER_NAME, COLUMN_USER_EMAIL, COLUMN_USER_PASSWORD, COLUMN_COURSEID_LIST }, COLUMN_COURSEID_LIST + "=?",
+        Cursor cursor = db.query(TABLE_PROFESSOR, new String[] { COLUMN_USER_NAME, COLUMN_USER_EMAIL, COLUMN_USER_PASSWORD, COLUMN_COURSEID_LIST }, COLUMN_USER_NAME + "=?",
                 new String[] { profCourseList }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        values.put(COLUMN_USER_NAME, cursor.getString(0));
-        values.put(COLUMN_USER_EMAIL, cursor.getString(1));
-        values.put(COLUMN_USER_PASSWORD, cursor.getString(2));
-        String putty = profCourseList + " "+ course.getId() +"-"+course.getLocation();
+        //values.put(COLUMN_USER_NAME, cursor.getString(0));
+        //values.put(COLUMN_USER_EMAIL, cursor.getString(1));
+        //values.put(COLUMN_USER_PASSWORD, cursor.getString(2));
+        String putty = cursor.getString(3) + " "+ course.getId() +"-"+course.getLocation();
         putty = putty.trim().replace(" +", " ");
         values.put(COLUMN_COURSEID_LIST, putty);
-        db.update(TABLE_PROFESSOR, values, COLUMN_COURSEID_LIST + "=?", new String[] { profCourseList });
+        db.update(TABLE_PROFESSOR, values, COLUMN_USER_NAME + "=?", new String[] { profCourseList });
         return putty;
     }
 
