@@ -56,11 +56,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class campus_list extends AppCompatActivity {
 
     ListView list;
     Intent myIntent;
+    ArrayAdapter<String> myAdapter;
+    String[] names = {"Campus Center", "Taper Hall", "Salvatori", "Fertitta",
+            "Engemann", "Kaufman", "Kaprielian", "Leventhal", "Annenberg"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +87,15 @@ public class campus_list extends AppCompatActivity {
 
         myIntent = new Intent(this, display_risk.class);
         list = (ListView) findViewById(R.id.campusList);
-        String[] names = {"Campus Center", "Taper Hall", "Salvatori", "Fertitta",
-                "Engemann", "Kaufman", "Kaprielian", "Leventhal", "Annenberg"};
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+
+        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         list.setAdapter(myAdapter);
         list.setOnItemClickListener(listClick);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        names[1] = "popular";
     }
 
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
@@ -95,13 +103,14 @@ public class campus_list extends AppCompatActivity {
         public void onItemClick(AdapterView parent, View v, int pos, long id) {
             String buildingName = (String) list.getItemAtPosition(pos);
             myIntent.putExtra("BUILDING_SELECTED", buildingName);
+            myIntent.putExtra("Frequent", true);
             Bundle bundle = new Bundle();
             bundle.putBoolean("isProf", login.isProf);
-
             bundle.putString("profCourseList", login.profCourseList);
-
             myIntent.putExtras(bundle);
             startActivity(myIntent);
         }
     };
+
+
 }

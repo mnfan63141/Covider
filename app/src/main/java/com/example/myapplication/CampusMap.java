@@ -69,6 +69,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -150,6 +151,8 @@ public class CampusMap extends AppCompatActivity implements View.OnClickListener
 
             myIntent.putExtra("BUILDING_SELECTED", "Taper Hall");
             startActivity(myIntent);
+            TextView tv = (TextView) v;
+            tv.setTextColor(Color.RED);
         }
         else if(v.getId() == R.id.salvatori){
             buildingName = (String) salvatoriView.getText();

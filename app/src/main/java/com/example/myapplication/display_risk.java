@@ -26,11 +26,13 @@ import android.database.Cursor;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class display_risk extends AppCompatActivity {
     DatabaseHelper db;
-
+//could add a toast saying that it's frequent?
+    //stle the list view?
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +50,14 @@ public class display_risk extends AppCompatActivity {
                 }
             }
         }
-        String message = "Risk level at " + buildingName + " is " + risk + " out of 1-5 where 5 is highest risk";
+        String note = "Risk level is out of 5 where 5 is the highest";
+        TextView noteText = (TextView) findViewById(R.id.note);
+        noteText.setText(note);
+        String message = "Risk level at " + buildingName + " is " + risk;
         TextView myText = (TextView) findViewById(R.id.display);
         myText.setText(message);
+        TextView frequentText = (TextView) findViewById(R.id.frequent);
+        frequentText.setText("This is now a frequently visited place for you!");
+
     }
 }

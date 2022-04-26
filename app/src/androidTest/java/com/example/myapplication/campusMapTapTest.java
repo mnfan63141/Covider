@@ -38,7 +38,7 @@ public class campusMapTapTest {
     @Test
     public void campusMapTapTest() {
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
