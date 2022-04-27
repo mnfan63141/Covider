@@ -42,6 +42,217 @@
                     android:text="home" />
             </LinearLayout>
         </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/second_layout"
+        android:layout_width="match_parent"
+        android:layout_height="800dp"
+        android:layout_below="@id/top_layout">
+
+
+        <TextView
+            android:id="@+id/checkinBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check In"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+        <TextView
+            android:id="@+id/symptoms"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkinBanner"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:text="Do you have any symptoms?"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/symptoms"
+            android:layout_gravity="center_horizontal"
+            android:text="Yes"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton1"
+            android:text="No"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/buildingSelection"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioButton2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:text="Select a building to check in:"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/buildingSelection"
+            android:layout_gravity="center_horizontal"
+            android:text="Campus Center" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton3"
+            android:text="Taper Hall"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton4"
+            android:text="Salvatori"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton5"
+            android:text="Fertita"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton6"
+            android:text="Engemann"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton7"
+            android:text="Kaufman"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton9"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton8"
+            android:text="Kaprielian"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton9"
+            android:text="Leventhal"
+            android:textSize="15dp" />
+        <RadioButton
+            android:id="@+id/radioButton11"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton10"
+            android:text="Annenberg"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/maskCheck"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioButton11"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:text="Does the building have masks?"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButton12"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/maskCheck"
+            android:layout_gravity="center_horizontal"
+            android:text="Yes"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton13"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton12"
+            android:text="No"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/sanitizer"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioButton13"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:text="Does the building have sanitizers?"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <RadioButton
+            android:id="@+id/radioButton14"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/sanitizer"
+            android:layout_gravity="center_horizontal"
+            android:text="Yes"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton15"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/radioButton14"
+            android:text="No"
+            android:textSize="15dp" />
+
+
+        <ImageView
+
+            android:layout_width="242dp"
+            android:layout_height="199dp"
+            android:layout_below="@id/buildingSelection"
+            android:layout_alignLeft="@id/radioButton13"
+            android:layout_marginLeft="149dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/checkin"></ImageView>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioButton15"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-31dp"
+            android:text="Submit" />
+
+
     </RelativeLayout>
 
 </RelativeLayout>

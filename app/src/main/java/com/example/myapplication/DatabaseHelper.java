@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "UserManager43k333.db";
+    private static final String DATABASE_NAME = "UserManager43.db";
 
     // User table name
     private static final String TABLE_USER = "Users";
@@ -39,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Building table columns
     private static final String COLUMN_BUILDING_NAME = "building_name";
     private static final String COLUMN_BUILDING_RISKLEVEL = "risk_level";
+    private static final String COLUMN_BUILDING_VISIT = "building_visit";
 
     //Professor table columns
     private static final String COLUMN_COURSEID_LIST = "course_id_list";
@@ -94,7 +95,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // create the buildings table
         String CREATE_BUILDING_TABLE = "CREATE TABLE " + TABLE_BUILDING + "("
                 + COLUMN_BUILDING_NAME + " TEXT PRIMARY KEY ,"
-                + COLUMN_BUILDING_RISKLEVEL + " INTEGER "
+                + COLUMN_BUILDING_RISKLEVEL + " INTEGER ,"
+                + COLUMN_BUILDING_VISIT + " INTEGER "
                 + ")";
         try {
             db.execSQL(CREATE_BUILDING_TABLE);
@@ -104,38 +106,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(COLUMN_BUILDING_NAME, "Campus Center");
             values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Taper Hall");
             values.put(COLUMN_BUILDING_RISKLEVEL, "3");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Salvatori");
             values.put(COLUMN_BUILDING_RISKLEVEL, "2");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Fertitta");
             values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Engemann");
             values.put(COLUMN_BUILDING_RISKLEVEL, "4");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Kaufman");
             values.put(COLUMN_BUILDING_RISKLEVEL, "3");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Kaprielian");
             values.put(COLUMN_BUILDING_RISKLEVEL, "2");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Leventhal");
             values.put(COLUMN_BUILDING_RISKLEVEL, "5");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             values.put(COLUMN_BUILDING_NAME, "Annenberg");
             values.put(COLUMN_BUILDING_RISKLEVEL, "1");
+            values.put(COLUMN_BUILDING_VISIT, "0");
             db.insert(TABLE_BUILDING, null, values);
 
             ContentValues values1 = new ContentValues();

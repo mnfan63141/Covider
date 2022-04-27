@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/Users/2019m/Desktop/CS310/MyApplication/app/src/main/res/layout/activity_campus_list.xml" value="0.2" />
         <entry key="..\:/Users/2019m/Desktop/CS310/MyApplication/app/src/main/res/layout/activity_campus_map.xml" value="0.1" />
         <entry key="..\:/Users/2019m/Desktop/CS310/MyApplication/app/src/main/res/layout/activity_checkin.xml" value="0.259375" />
@@ -29,6 +30,8 @@
         <entry key="..\:/Users/JakeFreeman/AndroidStudioProjects/Covider/app/src/main/res/layout/activity_register_faculty.xml" value="0.25" />
         <entry key="..\:/Users/JakeFreeman/AndroidStudioProjects/Covider/app/src/main/res/layout/activity_schedule.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/JakeFreeman/AndroidStudioProjects/Covider/app/src/main/res/layout/activity_status.xml" value="0.176" />
+        <entry key="app/src/main/res/layout/activity_checkin.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
       </map>
     </option>
   </component>
