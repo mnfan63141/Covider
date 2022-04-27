@@ -21,6 +21,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 
 import android.content.Intent;
@@ -28,6 +30,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class display_risk extends AppCompatActivity {
     DatabaseHelper db;
@@ -41,7 +44,7 @@ public class display_risk extends AppCompatActivity {
         String buildingName = secondIntent.getStringExtra("BUILDING_SELECTED");
         db = new DatabaseHelper(display_risk.this);
         SQLiteDatabase dbInstant = db.getReadableDatabase();
-        Cursor cursor = dbInstant.rawQuery("Select * from Buildings", null);
+        @SuppressLint("Recycle") Cursor cursor = dbInstant.rawQuery("Select * from Buildings", null);
         String risk = "0";
         if(cursor.getCount()>0){
             while(cursor.moveToNext()){
@@ -57,7 +60,15 @@ public class display_risk extends AppCompatActivity {
         TextView myText = (TextView) findViewById(R.id.display);
         myText.setText(message);
         TextView frequentText = (TextView) findViewById(R.id.frequent);
-        frequentText.setText("This is now a frequently visited place for you!");
+        if(risk.equals("2") || risk.equals("1") || risk.equals("0")){
+            frequentText.setText("This is a safer location for you!");
+        }
+        else{
+            frequentText.setText("Consider zooming in to this location!");
+            Toast.makeText(display_risk.this,  "This is now a frequent location for you!", Toast.LENGTH_LONG).show();
+        }
+
+
 
     }
 }
