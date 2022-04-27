@@ -28,6 +28,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class display_risk_map extends AppCompatActivity {
     DatabaseHelper db;
@@ -49,8 +50,19 @@ public class display_risk_map extends AppCompatActivity {
                 }
             }
         }
-        String message = "Risk level at " + buildingName + " is " + risk + " out of 1-5 where 5 is highest risk";
+        String note = "Risk level is out of 5 where 5 is the highest";
+        TextView noteText = (TextView) findViewById(R.id.note);
+        noteText.setText(note);
+        String message = "Risk level at " + buildingName + " is " + risk;
         TextView myText = (TextView) findViewById(R.id.display);
         myText.setText(message);
+        TextView frequentText = (TextView) findViewById(R.id.frequent);
+        if(risk.equals("2") || risk.equals("1") || risk.equals("0")){
+            frequentText.setText("This is a safer location for you!");
+        }
+        else{
+            frequentText.setText("Consider zooming in to this location!");
+            Toast.makeText(display_risk_map.this,  "This is now a frequent location for you!", Toast.LENGTH_LONG).show();
+        }
     }
 }

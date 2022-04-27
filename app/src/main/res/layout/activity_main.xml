@@ -64,22 +64,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="list" />
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout" />
             </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="339dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="344dp"
-        android:text="Logout" />
+
 
 
 </RelativeLayout>

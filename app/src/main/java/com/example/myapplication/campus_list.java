@@ -64,7 +64,8 @@ public class campus_list extends AppCompatActivity {
     Intent myIntent;
     ArrayAdapter<String> myAdapter;
     String[] names = {"Campus Center", "Taper Hall", "Salvatori", "Fertitta",
-            "Engemann", "Kaufman", "Kaprielian", "Leventhal", "Annenberg"};
+            "Engemann", "Kaufman", "Kaprielian", "Leventhal", "Annenberg", "McCarthy Dining",
+    "Parkside", "EVK", "Lyon Center", "Village Fitness"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
