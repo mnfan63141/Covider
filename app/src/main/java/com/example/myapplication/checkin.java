@@ -183,7 +183,7 @@ public class checkin extends AppCompatActivity {
                     build = "Salvatori";
 
                 if ((six.isChecked()))
-                    build = "Fertita";
+                    build = "Ferttita";
 
                 if ((seven.isChecked()))
                     build = "Engemann";

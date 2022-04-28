@@ -36,7 +36,7 @@ public class registerAndSignInTest {
     @Test
     public void registerAndSignInTest() {
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -46,7 +46,7 @@ public class registerAndSignInTest {
         appCompatEditText.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -76,7 +76,7 @@ public class registerAndSignInTest {
         appCompatEditText4.perform(replaceText("matt fan"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.registerUser), withText("Register"),
+                allOf(withId(R.id.addUser1), withText("Register"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -86,7 +86,7 @@ public class registerAndSignInTest {
         materialButton.perform(click());
 
         ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

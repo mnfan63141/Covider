@@ -41,7 +41,7 @@ public class dbCheckUserPwCheckinTest {
     @Test
     public void dbCheckUserPwCheckinTest() {
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -71,7 +71,7 @@ public class dbCheckUserPwCheckinTest {
         appCompatEditText3.perform(replaceText("matt"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.registerUser), withText("Register"),
+                allOf(withId(R.id.addUser1), withText("Register"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -81,7 +81,7 @@ public class dbCheckUserPwCheckinTest {
         materialButton.perform(click());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

@@ -34,8 +34,6 @@ import android.widget.Toast;
 
 public class display_risk extends AppCompatActivity {
     DatabaseHelper db;
-//could add a toast saying that it's frequent?
-    //stle the list view?
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,26 +44,40 @@ public class display_risk extends AppCompatActivity {
         SQLiteDatabase dbInstant = db.getReadableDatabase();
         @SuppressLint("Recycle") Cursor cursor = dbInstant.rawQuery("Select * from Buildings", null);
         String risk = "0";
+        int numVisits = 0;
         if(cursor.getCount()>0){
             while(cursor.moveToNext()){
                 if(cursor.getString(0).equals(buildingName)){
                     risk = cursor.getString(1);
+                    numVisits = cursor.getInt(2);
                 }
             }
         }
         String note = "Risk level is out of 5 where 5 is the highest";
         TextView noteText = (TextView) findViewById(R.id.note);
         noteText.setText(note);
-        String message = "Risk level at " + buildingName + " is " + risk;
-        TextView myText = (TextView) findViewById(R.id.display);
-        myText.setText(message);
+        if(numVisits > 10){
+            risk = String.valueOf(Integer.parseInt(risk) + 1);
+            String message = "Risk level at " + buildingName + " is " + risk +
+                    " and is one risk degree higher due to reduced building safety and high foot traffic.";
+            TextView myText = (TextView) findViewById(R.id.display);
+            myText.setText(message);
+        }
+        else{
+            String message = "Risk level at " + buildingName + " is " + risk;
+            TextView myText = (TextView) findViewById(R.id.display);
+            myText.setText(message);
+        }
+
         TextView frequentText = (TextView) findViewById(R.id.frequent);
-        if(risk.equals("2") || risk.equals("1") || risk.equals("0")){
+        if((risk.equals("2") || risk.equals("1") || risk.equals("0")) && numVisits <= 10){
             frequentText.setText("This is a safer location for you!");
         }
         else{
             frequentText.setText("Consider zooming in to this location!");
-            Toast.makeText(display_risk.this,  "This is now a frequent location for you!", Toast.LENGTH_LONG).show();
+        }
+        if(numVisits >= 4){
+            Toast.makeText(display_risk.this,  "This is a frequent location for you!", Toast.LENGTH_LONG).show();
         }
 
 
