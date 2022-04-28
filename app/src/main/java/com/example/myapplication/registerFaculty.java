@@ -61,6 +61,10 @@ public class registerFaculty extends AppCompatActivity  {
                 String[] lines = coursesString.split("\n");
                 String totalLine = "";
                 for (String line : lines) {
+                    if(!line.matches("[a-zA-Z0-9]*-[a-zA-Z0-9]*")) {
+                        Toast.makeText(registerFaculty.this, "Please follow valid formatting", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     totalLine += line + " ";
                 }
                 Professor user = null;

@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.database.Cursor;
 
@@ -44,21 +46,81 @@ public class checkin extends AppCompatActivity {
         //setting up the database
         db = new DatabaseHelper(checkin.this);
         submitt = findViewById(R.id.submit);
-        one = findViewById(R.id.radioButton1);
-        two = findViewById(R.id.radioButton2);
-        three = findViewById(R.id.radioButton3);
-        four = findViewById(R.id.radioButton4);
-        five = findViewById(R.id.radioButton5);
-        six = findViewById(R.id.radioButton6);
-        seven = findViewById(R.id.radioButton7);
-        eight = findViewById(R.id.radioButton8);
-        nine = findViewById(R.id.radioButton9);
-        ten = findViewById(R.id.radioButton10);
-        eleven = findViewById(R.id.radioButton11);
-        twelve = findViewById(R.id.radioButton12);
-        thirteen = findViewById(R.id.radioButton13);
-        fourteen = findViewById(R.id.radioButton14);
-        fifteen = findViewById(R.id.radioButton15);
+        one = findViewById(R.id.sympYes);
+        // Addie Created
+        one.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked) {
+                    two.setChecked(false);
+                }
+            }
+        });
+        two = findViewById(R.id.sympNo);
+        // Addie Implement
+        two.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked) {
+                    one.setChecked(false);
+                }
+            }
+        });
+        three = findViewById(R.id.campusCenterRadio);
+        four = findViewById(R.id.taperHallRadio);
+        five = findViewById(R.id.salRadio);
+        six = findViewById(R.id.fertitaRadio);
+        seven = findViewById(R.id.engelRadio);
+        eight = findViewById(R.id.kaufRadio);
+        nine = findViewById(R.id.kapRadio);
+        ten = findViewById(R.id.levenRadio);
+        eleven = findViewById(R.id.annenRadio);
+        twelve = findViewById(R.id.maskYes);
+        // Addie created
+        twelve.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked) {
+                    thirteen.setChecked(false);
+                }
+            }
+        });
+        thirteen = findViewById(R.id.maskNo);
+        // Addie created
+        thirteen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked) {
+                    twelve.setChecked(false);
+                }
+            }
+        });
+        fourteen = findViewById(R.id.sanitizerYes);
+        // Addie created
+        fourteen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked) {
+                    fifteen.setChecked(false);
+                }
+            }
+        });
+        fifteen = findViewById(R.id.sanitizerNo);
+        // Addie created
+        fifteen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked) {
+                    fourteen.setChecked(false);
+                }
+            }
+        });
         if(one.isChecked()){
             two.setChecked(false);
         }
