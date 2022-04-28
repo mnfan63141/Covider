@@ -135,7 +135,7 @@
             android:layout_width="fill_parent"
             android:layout_height="25dp"
             android:layout_below="@id/radioButton5"
-            android:text="Fertita"
+            android:text="Ferttita"
             android:textSize="15dp" />
 
         <RadioButton

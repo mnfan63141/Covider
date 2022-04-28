@@ -38,7 +38,7 @@ public class enterCampusListTest {
     @Test
     public void enterCampusListTest() {
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -68,7 +68,7 @@ public class enterCampusListTest {
         appCompatEditText3.perform(replaceText("m"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.registerUser), withText("Register"),
+                allOf(withId(R.id.addUser1), withText("Register"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -78,7 +78,7 @@ public class enterCampusListTest {
         materialButton.perform(click());
 
         ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

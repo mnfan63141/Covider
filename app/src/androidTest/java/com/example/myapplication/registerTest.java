@@ -34,7 +34,7 @@ public class registerTest {
     @Test
     public void registerTest() {
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.registerUser), withText("Register"),
+                allOf(withId(R.id.addUser1), withText("Register"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content), 0), 4),

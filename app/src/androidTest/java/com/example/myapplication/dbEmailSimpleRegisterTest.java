@@ -39,7 +39,7 @@ public class dbEmailSimpleRegisterTest {
     @Test
     public void dbEmailSimpleRegisterTest() {
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email),
+                allOf(withId(R.id.email2),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -69,7 +69,7 @@ public class dbEmailSimpleRegisterTest {
         appCompatEditText3.perform(replaceText("matt"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.registerUser), withText("Register"),
+                allOf(withId(R.id.addUser1), withText("Register"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
