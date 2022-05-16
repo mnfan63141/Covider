@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class faculty extends AppCompatActivity {
-
+    public static int butId = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("Faculty", "onCreate: ");
@@ -112,6 +112,9 @@ public class faculty extends AppCompatActivity {
             Button e1 = new Button(this);
             final Professor p = prof;
             final int j = i;
+            e1.setId(View.generateViewId());
+            butId = e1.getId();
+
             e1.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){

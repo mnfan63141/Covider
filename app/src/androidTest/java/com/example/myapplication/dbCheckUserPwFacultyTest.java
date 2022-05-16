@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -36,141 +37,27 @@ import org.junit.runner.RunWith;
 public class dbCheckUserPwFacultyTest {
 
     @Rule
-    public ActivityTestRule<register> mActivityTestRule = new ActivityTestRule<>(register.class);
+    public ActivityScenarioRule<registerFaculty> mActivityTestRule = new ActivityScenarioRule <>(registerFaculty.class);
 
     @Test
     public void dbCheckUserPwFacultyTest() {
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.email2),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText("mfan63141@gmail.com"), closeSoftKeyboard());
+        mActivityTestRule.getScenario().onActivity(activity -> {
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText("miao"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.fullName),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText("matt"), closeSoftKeyboard());
-
-        ViewInteraction materialButton = onView(
-                allOf(withId(R.id.addUser1), withText("Register"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                4),
-                        isDisplayed()));
-        materialButton.perform(click());
-
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.email2),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText4.perform(replaceText("mfan63141@gmail."), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatEditText5.perform(replaceText("m"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText6 = onView(
-                allOf(withId(R.id.email2), withText("mfan63141@gmail."),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText6.perform(replaceText("mfan63141@gmail.com"));
-
-        ViewInteraction appCompatEditText7 = onView(
-                allOf(withId(R.id.email2), withText("mfan63141@gmail.com"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText7.perform(closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText8 = onView(
-                allOf(withId(R.id.password), withText("m"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatEditText8.perform(replaceText("miao"));
-
-        ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.password), withText("miao"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatEditText9.perform(closeSoftKeyboard());
-
-        ViewInteraction materialButton2 = onView(
-                allOf(withId(R.id.signIn), withText("Sign In"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        materialButton2.perform(click());
-
-        ViewInteraction materialButton3 = onView(
-                allOf(withId(R.id.faculty), withText("Faculty"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        1),
-                                1),
-                        isDisplayed()));
-        materialButton3.perform(click());
-        DatabaseHelper db = new DatabaseHelper(mActivityTestRule.getActivity());
-        SQLiteDatabase dbInstant = db.getReadableDatabase();
-        Cursor cursor = dbInstant.rawQuery("Select * from Users", null);
-        String pw = "0";
-        if(cursor.getCount()>0){
-            while(cursor.moveToNext()){
-                if (cursor.getString(2).equals("miao")) {
-                    pw = cursor.getString(2);
+            DatabaseHelper db = new DatabaseHelper(activity);
+            SQLiteDatabase dbInstant = db.getReadableDatabase();
+            Cursor cursor = dbInstant.rawQuery("Select * from Users", null);
+            String pw = "0";
+            if(cursor.getCount()>0){
+                while(cursor.moveToNext()){
+                    if (cursor.getString(2).equals("aa")) {
+                        pw = cursor.getString(2);
+                    }
                 }
             }
-        }
-        Assert.assertEquals("miao", pw);
+            Assert.assertEquals("aa", pw);
+        });
+
     }
 
     private static Matcher<View> childAtPosition(
